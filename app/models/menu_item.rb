@@ -6,6 +6,7 @@ class MenuItem < ActiveRecord::Base
   end
 
   def self.vegetarian
+    # scoped to class method on itself to return on only vegetarian items
     where(vegetarian: true)
   end
 
