@@ -1,4 +1,6 @@
 <h1>Edit Menu Item</h1>
+
+  <!-- [:admin, @menu_item] is namespaced to admin this is why we do brackets -->
 <%= form_for [:admin, @menu_item] do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>

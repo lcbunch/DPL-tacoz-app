@@ -2,14 +2,16 @@ Rails.application.routes.draw do
   devise_for :users
   root 'site#index'
   get '/about' => 'site#about'
-  get 'contact' => 'site#contact'
+  get '/contact' => 'site#contact'
   post '/contact-submit' => 'site#contact_submit', as: :submit_contact
+  # public can only access index and show
   resources :menu_items, only: [:index, :show], path: 'our-food'
   get '/our-vegetarian-food' => 'menu_items#vegetarian'
 
+  # namespacing is pretty much just for organization. also restricts public from doing unwanted stuff.
   namespace :admin do
     get '/' => 'base#index'
-
+    # namespaced so admin can access all menu_items
     resources :menu_items
   end
 
