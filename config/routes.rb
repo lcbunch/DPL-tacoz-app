@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # public can only access index and show
   resources :menu_items, only: [:index, :show], path: 'our-food'
   get '/our-vegetarian-food' => 'menu_items#vegetarian'
+  resources :locations, only: [:index, :show]
 
   # namespacing is pretty much just for organization. also restricts public from doing unwanted stuff.
   namespace :admin do
