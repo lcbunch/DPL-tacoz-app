@@ -1,5 +1,5 @@
 <h1>New Menu Item</h1>
-<%= form_for [:admin, @menu_item] do |f| %>
+<%= nested_form_for([:admin, @menu_item]) do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -25,6 +25,7 @@
     <%= f.file_field :picture %>
   </div>
 
+  <p><%= f.link_to_add('Add ingredients', :ingredients)%></p>
   <%= f.fields_for(:ingredients) do |ingredient_form| %>
     <div class="form-group">
       <%= ingredient_form.text_field(:name, placeholder: 'Name') %>
@@ -32,6 +33,7 @@
     <div class="form-group">
       <%= ingredient_form.number_field(:calories, placeholder: 'Calories') %>
     </div>
+    <p><%= ingredient_form.link_to_remove('Remove ingredient') %></p>
   <% end %>
 
   <div class="form-group">
