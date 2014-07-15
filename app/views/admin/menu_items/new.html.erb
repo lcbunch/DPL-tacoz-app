@@ -1,19 +1,41 @@
 <h1>New Menu Item</h1>
 <%= form_for [:admin, @menu_item] do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
 
-  <%= f.label :price %>
-  <%= f.number_field :price %>
+  <div class="form-group">
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
 
-  <%= f.label :vegetarian %>
-  <%= f.check_box :vegetarian %>
+  <div class="form-group">
+    <%= f.label :vegetarian %>
+    <%= f.check_box :vegetarian %>
+  </div>
 
-  <%= f.label :picture %>
-  <%= f.file_field :picture %>
+  <div class="form-group">
+    <%= f.label :picture %>
+    <%= f.file_field :picture %>
+  </div>
 
-  <%= f.submit %>
+  <%= f.fields_for(:ingredients) do |ingredient_form| %>
+    <div class="form-group">
+      <%= ingredient_form.text_field(:name, placeholder: 'Name') %>
+    </div>
+    <div class="form-group">
+      <%= ingredient_form.number_field(:calories, placeholder: 'Calories') %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.submit %>
+  </div>
+
 <% end %>
