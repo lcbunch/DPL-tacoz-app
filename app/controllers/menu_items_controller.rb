@@ -4,10 +4,10 @@ class MenuItemsController < ApplicationController
     @items = MenuItem.all.page(params[:page]).per(8)
   end
 
-  def vegetarian
-    @items = MenuItem.vegetarian.page(params[:page]).per(8)
-    render :index
-  end
+  # def vegetarian
+  #   @items = MenuItem.vegetarian.page(params[:page]).per(8)
+  #   render :index
+  # end
 
   def show
 

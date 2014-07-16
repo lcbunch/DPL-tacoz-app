@@ -3,7 +3,8 @@ class MenuItem < ActiveRecord::Base
   has_many :ingredients
 
   # We need this for nested forms. This saves ingredients when we save a menu item
-  accepts_nested_attributes_for :ingredients
+  accepts_nested_attributes_for :ingredients, allow_destroy: true, reject_if:
+  :has_blank_attributes
 
   # after we initialize a MenuItem. if its empty build ingredients
   after_initialize do
@@ -16,8 +17,15 @@ class MenuItem < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
-  def self.vegetarian
-    # scoped to class method on itself to return on only vegetarian items
-    where(vegetarian: true)
+  # def self.vegetarian
+  #   # scoped to class method on itself to return on only vegetarian items
+  #   where(vegetarian: true)
+  # end
+
+  private
+
+  def has_blank_attributes(ingredient_attrs)
+    ingredient_attrs['name'].blank?
   end
+
 end
